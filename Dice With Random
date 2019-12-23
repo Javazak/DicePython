@@ -1,0 +1,44 @@
+import random
+
+PlayerOne = "Ani"
+PlayerTwo = "Raz"
+
+AniScore = 0
+RazScore = 0
+
+# Each cube has six possible values
+diceOne = [1, 2, 3, 4, 5, 6]
+diceTwo = [1, 2, 3, 4, 5, 6]
+
+def playDiceGame():
+    """Both participants, Ani and Raz, roll the dice using the shuffle method"""
+
+    for i in range(5):
+        #both dice are shaken 5 times
+        random.shuffle(diceOne)
+        random.shuffle(diceTwo)
+    firstNumber = random.choice(diceOne) # using the choice method to select a random value
+    SecondNumber = random.choice(diceTwo)
+    return firstNumber + SecondNumber
+
+print("Dice game uses random module\n")
+
+#Let's play dice three times
+for i in range(3):
+    # determine who will roll the dice first
+    RazTossNumber = random.randint(1, 100) # random number generation from 1 to 100, including 100
+    AniTossNumber = random.randrange(1, 101, 1) # random number generation from 1 to 100, not including 101
+
+    if( RazTossNumber > AniTossNumber):
+        print("Raz won the draw.")
+        RazScore = playDiceGame()
+        AniScore = playDiceGame()
+    else:
+        print("Ani won the draw.")
+        AniScore = playDiceGame()
+        RazScore = playDiceGame()
+
+    if(RazScore > AniScore):
+        print ("Raz won the dice game. Final Raz Score: ", RazScore," Ani Final Score: ", AniScore, "\n")
+    else:
+        print("Ani won the dice game. Final score of Ani: ", AniScore," Final score of Raz: ", RazScore, "\n")
